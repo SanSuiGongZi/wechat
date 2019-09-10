@@ -1,0 +1,94 @@
+/* chat.wxss */
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text_shape {
+  display: flex;
+  width: 30%;
+  border-radius: 30rpx;
+  background: greenyellow;
+  padding: 10rpx;
+  text-align: center;
+  align-items: center;
+  margin: 10rpx;
+}
+
+.view_hide {
+  display: none;
+}
+
+.view_show {
+  display: block;
+}
+
+.btn {
+  border-radius: 20rpx;
+}
+
+.leftMsg {
+  font-size: 35rpx;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+  background-color: #96eb6a;
+  margin-left: -2.5vw;
+  border-radius: 10rpx;
+  z-index: 10;
+}
+
+.rightMsg {
+  font-size: 35rpx;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+  background-color: #96eb6a;
+  margin-right: -1.6vw;
+  border-radius: 10rpx;
+  z-index: 10;
+}
+
+.leftselect {
+  margin-top: 10rpx;
+  margin-left: 15vw;
+}
+
+/* 三角箭头 */
+
+.triangle {
+  background: #96eb6a;
+  width: 20rpx;
+  height: 20rpx;
+  transform: rotate(45deg);
+  position: absolute;
+}
+
+/* 结论 */
+
+.sheet {
+  background: #fcbe3960;
+  border-radius: 36rpx;
+  margin: 5vw;
+  height: 30vw;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.textMsg {
+  background: #fcbe3960;
+  border-radius: 36rpx;
+  margin: 5vw;
+  height: 30vw;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 35rpx;
+  /* padding: 2vw 2.5vw; */
+  /* border-radius: 10rpx; */
+  z-index: 10;
+}

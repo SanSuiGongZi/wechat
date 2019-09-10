@@ -1,0 +1,195 @@
+<!-- chat.wxml -->
+
+<!-- 客服消息1（左） -->
+<view style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+  <view style='width: 11vw; height: 11vw;'>
+    <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../images/famous_doctors.png'></image>
+  </view>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-left: 2.0vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle"></view>
+  </view>
+  <view class='leftMsg'>{{mottoOne}}</view>
+</view>
+<!-- 答案1 -->
+<view class="leftselect">
+  <view class="text_shape,{{qing?'view_show':'view_hide'}}" wx:for="{{arr}}" data-name='{{item.name}}' data-id='{{item.id}}' bindtap="btnTextFn">{{item.name}}</view>
+</view>
+
+<!-- 单个消息1 用户发出（右） -->
+<view style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+  <text class="rightMsg,{{!qing?'view_show':'view_hide'}}" bindtap="btnClickFn">{{dataText}}</text>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!qing?'view_show':'view_hide'}}"></view>
+  </view>
+
+</view>
+
+
+<!-- 客服消息2（左） -->
+<view style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+  <view class="{{!qing?'view_show':'view_hide'}}" style='width: 11vw; height: 11vw;'>
+    <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../images/famous_doctors.png'></image>
+  </view>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-left: 2.0vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!qing?'view_show':'view_hide'}}"></view>
+  </view>
+  <view class="leftMsg,{{!qing?'view_show':'view_hide'}}">{{mottoTwo}}</view>
+</view>
+<!-- 答案2 -->
+<view class="leftselect">
+  <view class="text_shape,{{one?'view_show':'view_hide'}}" wx:for="{{arr1}}" data-name='{{item.name}}' data-id='{{item.id}}' bindtap="btnTextTwo">{{item.name}}</view>
+</view>
+
+<!-- 单个消息2 用户发出（右） -->
+<view style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+  <text class="rightMsg,{{!oneSet?'view_show':'view_hide'}}" bindtap="btnClickTwo">{{dataTextTwo}}</text>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!oneSet?'view_show':'view_hide'}}"></view>
+  </view>
+
+</view>
+
+
+<!-- 客服消息3（左） -->
+<view style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+  <view class="{{!oneSet?'view_show':'view_hide'}}" style='width: 11vw; height: 11vw;'>
+    <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../images/famous_doctors.png'></image>
+  </view>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-left: 2.0vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!oneSet?'view_show':'view_hide'}}"></view>
+  </view>
+  <view class="leftMsg,{{!oneSet?'view_show':'view_hide'}}">{{mottoThree}}</view>
+</view>
+<!-- 答案3 -->
+<view class="leftselect">
+  <view class="text_shape,{{two?'view_show':'view_hide'}}" wx:for="{{arr2}}" data-name='{{item.name}}' data-id='{{item.id}}' bindtap="btnTextThree">{{item.name}}</view>
+</view>
+
+<!-- 单个消息3 用户发出（右） -->
+<view style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+  <text class="rightMsg,{{!twoSet?'view_show':'view_hide'}}" bindtap="btnClickThree">{{dataTextThree}}</text>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!twoSet?'view_show':'view_hide'}}"></view>
+  </view>
+
+</view>
+
+
+<!-- 客服消息4（左） -->
+<view style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+  <view class="{{!twoSet?'view_show':'view_hide'}}" style='width: 11vw; height: 11vw;'>
+    <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../images/famous_doctors.png'></image>
+  </view>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-left: 2.0vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!twoSet?'view_show':'view_hide'}}"></view>
+  </view>
+  <view class="leftMsg,{{!twoSet?'view_show':'view_hide'}}">{{mottofour}}</view>
+</view>
+<!-- 答案4 -->
+<view class="leftselect">
+  <view class="text_shape,{{three?'view_show':'view_hide'}}" wx:for="{{arr3}}" data-name='{{item.name}}' data-id='{{item.id}}' bindtap="btnTextFour">{{item.name}}</view>
+</view>
+
+<!-- 单个消息4 用户发出（右） -->
+<view style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+  <text class="rightMsg,{{!threeSet?'view_show':'view_hide'}}" bindtap="btnClickFour">{{dataTextfour}}</text>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!threeSet?'view_show':'view_hide'}}"></view>
+  </view>
+
+</view>
+
+
+<!-- 客服消息5（左） -->
+<view style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+  <view class="{{!threeSet?'view_show':'view_hide'}}" style='width: 11vw; height: 11vw;'>
+    <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../images/famous_doctors.png'></image>
+  </view>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-left: 2.0vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!threeSet?'view_show':'view_hide'}}"></view>
+  </view>
+  <view class="leftMsg,{{!threeSet?'view_show':'view_hide'}}">{{mottofive}}</view>
+</view>
+<!-- 答案5 -->
+<view class="leftselect">
+  <view class="text_shape,{{four?'view_show':'view_hide'}}" wx:for="{{arr4}}" data-name='{{item.name}}' data-id='{{item.id}}' bindtap="btnTextFive">{{item.name}}</view>
+</view>
+
+<!-- 单个消息5 用户发出（右） -->
+<view style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+  <text class="rightMsg,{{!fourSet?'view_show':'view_hide'}}" bindtap="btnClickFive">{{dataTextfive}}</text>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!fourSet?'view_show':'view_hide'}}"></view>
+  </view>
+
+</view>
+
+
+<!-- 客服消息6（左） -->
+<view style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+  <view class="{{!fourSet?'view_show':'view_hide'}}" style='width: 11vw; height: 11vw;'>
+    <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../images/famous_doctors.png'></image>
+  </view>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-left: 2.0vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!fourSet?'view_show':'view_hide'}}"></view>
+  </view>
+  <view class="leftMsg,{{!fourSet?'view_show':'view_hide'}}">{{mottosex}}</view>
+</view>
+<!-- 答案6 -->
+<view class="leftselect">
+  <view class="text_shape,{{five?'view_show':'view_hide'}}" wx:for="{{arr3}}" data-name='{{item.name}}' data-id='{{item.id}}' bindtap="btnTextSex">{{item.name}}</view>
+</view>
+
+<!-- 单个消息6 用户发出（右） -->
+<view style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+  <text class="rightMsg,{{!fiveSet?'view_show':'view_hide'}}" bindtap="btnClickSex">{{dataTextsex}}</text>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!fiveSet?'view_show':'view_hide'}}"></view>
+  </view>
+
+</view>
+
+
+<!-- 客服消息7（左） -->
+<view style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+  <view class="{{!fiveSet?'view_show':'view_hide'}}" style='width: 11vw; height: 11vw;'>
+    <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../images/famous_doctors.png'></image>
+  </view>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-left: 2.0vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!fiveSet?'view_show':'view_hide'}}"></view>
+  </view>
+  <view class="leftMsg,{{!fiveSet?'view_show':'view_hide'}}">{{mottoseven}}</view>
+</view>
+<!-- 答案7 -->
+<view class="leftselect">
+  <view class="text_shape,{{sex?'view_show':'view_hide'}}" wx:for="{{arr3}}" data-name='{{item.name}}' data-id='{{item.id}}' bindtap="btnTextSeven">{{item.name}}</view>
+</view>
+
+<!-- 单个消息7 用户发出（右） -->
+<view style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+  <text class="rightMsg,{{!sexSet?'view_show':'view_hide'}}" bindtap="btnClickSeven">{{dataTextsex}}</text>
+  <!-- 画三角箭头 -->
+  <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+    <view class="triangle,{{!sexSet?'view_show':'view_hide'}}"></view>
+  </view>
+
+</view>
+
+
+<!-- 结论 -->
+<view >
+   <view class="textMsg,{{!sexSet?'view_show':'view_hide'}}">{{verdict}}</view>
+</view>
