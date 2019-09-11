@@ -1,0 +1,25 @@
+<!--pages/answer/answer.wxml-->
+<!-- catchtap 点击事件属性,在js中写click方法,点击的时候会出发 ,id是可以传过去的参数 -->
+<view>
+
+<view class="text-top">嗨 , 我是您的私人医生,您感觉牙齿存在什么问题呢?或者有哪些不适呢</view>
+<view class="text">----------- 选择您可能出现的牙齿问题------------</view>
+<view class="text-left" wx-if="{{showType == -1}}" wx:for="{{showArray}}" id="{{index}}" catchtap="click" wx:key="index">
+  {{item}}</view>
+
+<view class="text-right" wx-if="{{showType != -1}}">{{show1Content}}</view>
+
+<!-- //是怎样的牙疼呢 -->
+<view class="text-left" wx-if="{{showType == 0}}"  catchtap="click" >
+  {{all[showType].question}}</view>
+
+
+  <view class="text-left" wx:for="{{all[showType].type}}" wx-if="{{item.show}}"  id="{{index}}" catchtap="click" wx:key="index">
+  {{item.choose}}</view>
+
+
+
+
+</view>
+
+
