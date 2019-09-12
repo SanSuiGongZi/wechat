@@ -33,16 +33,6 @@ App({
       }
     })
   },
-  onShow(options) {
-    // Do something when show.
-    console.log("logs page execute : onshow");
-  },
-  onHide() {
-    // Do something when hide.
-  },
-  onError(msg) {
-    console.log(msg)
-  },
   globalData: {
     userInfo: null
   }

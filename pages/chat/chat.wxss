@@ -1,20 +1,51 @@
 /* chat.wxss */
 
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+page {
+  background-color: #FBFBFB;
 }
 
 .text_shape {
-  display: flex;
-  width: 30%;
-  border-radius: 30rpx;
-  background: greenyellow;
-  padding: 10rpx;
-  text-align: center;
-  align-items: center;
-  margin: 10rpx;
+  font-size: 26rpx;
+  line-height: 7vw;
+  padding: 2vw 5vw;
+  background-color: #fff;
+  margin-right: 1.6vw;
+  border-radius: 40rpx;
+  z-index: 10;
+  color: rgba(29, 181, 255, 1);
+  box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(155, 155, 155, 0.1);
+  border: 1rpx solid rgba(183, 217, 255, 1);
+}
+
+.leftMsg {
+  font-size: 26rpx;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+  background-color: #fff;
+  border: 1rpx solid #b7d9ff;
+  margin-left: 2.5vw;
+  border-radius: 40rpx 40rpx 40rpx 0;
+  z-index: 10;
+  color: rgba(74, 74, 74, 1);
+  box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(155, 155, 155, 0.1);
+}
+
+.rightMsg {
+  font-size: 26rpx;
+  line-height: 7vw;
+  padding: 2vw 5vw;
+  background-color: #1db5ff;
+  margin-right: 1.6vw;
+  border-radius: 40rpx 40rpx 0rpx 40rpx;
+  z-index: 10;
+  box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(155, 155, 155, 0.1);
+  max-width: 74vw;
+  color: #fff;
+}
+
+.leftselect {
+  margin-top: 5vw;
+  margin-left: 15vw;
 }
 
 .view_hide {
@@ -25,70 +56,16 @@
   display: block;
 }
 
-.btn {
-  border-radius: 20rpx;
-}
-
-.leftMsg {
-  font-size: 35rpx;
-  line-height: 7vw;
-  padding: 2vw 2.5vw;
-  background-color: #96eb6a;
-  margin-left: -2.5vw;
-  border-radius: 10rpx;
-  z-index: 10;
-}
-
-.rightMsg {
-  font-size: 35rpx;
-  line-height: 7vw;
-  padding: 2vw 2.5vw;
-  background-color: #96eb6a;
-  margin-right: -1.6vw;
-  border-radius: 10rpx;
-  z-index: 10;
-}
-
-.leftselect {
-  margin-top: 10rpx;
-  margin-left: 15vw;
-}
-
-/* 三角箭头 */
-
-.triangle {
-  background: #96eb6a;
-  width: 20rpx;
-  height: 20rpx;
-  transform: rotate(45deg);
-  position: absolute;
-}
-
 /* 结论 */
 
-.sheet {
-  background: #fcbe3960;
-  border-radius: 36rpx;
-  margin: 5vw;
-  height: 30vw;
-  padding: 20rpx;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-}
 .textMsg {
-  background: #fcbe3960;
-  border-radius: 36rpx;
+  background: #fff;
   margin: 5vw;
-  height: 30vw;
-  padding: 20rpx;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-  font-size: 35rpx;
-  /* padding: 2vw 2.5vw; */
-  /* border-radius: 10rpx; */
+  font-size: 24rpx;
+  padding: 5vw 8vw;
+  color: #4a4a4a;
   z-index: 10;
+  box-shadow: 0px 0px 20px 0px rgba(236, 236, 236, 0.3);
+  border-radius: 30px;
+  border: 1px solid rgba(183, 217, 255, 1);
 }

@@ -12,12 +12,15 @@ Page({
     mottofive: '持续时间和疼痛程度如何?',
     mottosex: '咬牙时是否会出现或加重疼痛?',
     mottoseven: '是否出现牙齿松动?',
+    mottoSpecialOne: '经常会有异味吗?',
+    mottoSpecialTwo: '能否排除肠胃问题等其他身体原因?',
     //结论
     verdict: '感谢您的耐心配合，您很可能患有龋病(虫牙)。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。',
     //状态
     //第一问状态
     qing: true,
     //第二问状态
+    qingKu: true,
     two: false,
     twoSet: true,
     //第三问状态
@@ -41,6 +44,14 @@ Page({
     sevenis: true,
     seven: false,
     sevenSet: true,
+    //问题一(口腔有异味)
+    specialOneIs: true,
+    specialOne: false,
+    specialOneSet: true,
+    //问题二(口腔有异味)
+    specialTwoIs: true,
+    specialTwo: false,
+    specialTwoSet: true,
     //结论状态
     setverdict: false,
     //文本
@@ -58,6 +69,10 @@ Page({
     dataTextsex: '',
     //七选答案
     dataTextseven: '',
+    //(口腔有异味)答案一
+    dataTextspecial1: '',
+    //(口腔有异味)答案二
+    dataTextspecial2: '能',
     //选项
     arr: [{
       id: 1,
@@ -112,23 +127,61 @@ Page({
       id: 2,
       name: '否'
     }],
+
     arr6: [{
       id: 1,
       name: '有'
     }, {
       id: 2,
       name: '没有'
+    }],
+
+    arrSpecial1: [{
+      id: 1,
+      name: '不，偶尔有异味'
+    }, {
+      id: 2,
+      name: '是的，经常有异味'
+    }],
+
+    arrSpecial2: [{
+      id: 1,
+      name: '能'
+    }, {
+      id: 2,
+      name: '不确定'
     }]
 
   },
 
   // 第一问
   btnClickFn: function() {
+
     var vak = !this.data.qing;
-    var vaks = !this.data.two;
+
+    var str = this.data.dataText;
+    //如果是(口腔有异味) 隐藏第二个问题 显示特问一
+    if (str == "口腔有异味") {
+      var vakis = !this.data.specialOneIs;
+      var vakss = !this.data.specialOne;
+      this.setData({
+        //显示隐藏下面问题与选项
+        specialOneIs: vakis,
+        specialOne: vakss,
+      })
+
+    } else {
+      //如果不是(口腔有异味) 显示第二个问题 隐藏特问一
+      var vakis = !this.data.qingKu;
+      var vaks = !this.data.two;
+      this.setData({
+        qingKu: vakis,
+        two: vaks,
+      })
+    }
+
     this.setData({
       qing: vak,
-      two: vaks,
     })
   },
   btnTextFn: function(e) {
@@ -173,9 +226,16 @@ Page({
         }]
       })
     } else {
-      // that.setData({
-      //   mottoTwo: "是否长期吸烟,喝茶,喝咖啡等习惯？"
-      // })
+      that.setData({
+        mottoSpecialOne: '经常会有异味吗?',
+        arrSpecial1: [{
+          id: 1,
+          name: '不，偶尔有异味'
+        }, {
+          id: 2,
+          name: '是的，经常有异味'
+        }]
+      })
     }
     this.btnClickFn()
     console.log(e.currentTarget.dataset.name)
@@ -290,6 +350,14 @@ Page({
         four: vakss,
         fouris: vakis,
       })
+    } else {
+      //结论( 外源性染色 )
+      var vakv = !this.data.setverdict;
+      this.setData({
+        //设置结论并且显示
+        setverdict: vakv,
+
+      })
     }
 
     this.setData({
@@ -331,7 +399,7 @@ Page({
           four: vakss,
 
           //设置结论并且显示
-          //setverdict:true
+          setverdict: false,
           verdict: '感谢您的耐心配合，您很可能患有外源性染色。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
         })
 
@@ -403,10 +471,14 @@ Page({
 
       var vakis = this.data.fiveis;
       var vakss = this.data.five;
+      //结论
+      var vakv = !this.data.setverdict;
       this.setData({
         //显示隐藏下面问题与选项
         fiveis: vakis,
         five: vakss,
+        //设置结论并且显示
+        setverdict: vakv,
       })
 
     } else {
@@ -418,6 +490,15 @@ Page({
           //显示隐藏下面问题与选项
           fiveis: vakis,
           five: vakss,
+
+        })
+      } else {
+        //结论( 龋齿(虫牙) )
+        var vakv = !this.data.setverdict;
+        this.setData({
+          //设置结论并且显示
+          setverdict: vakv,
+
         })
       }
     }
@@ -428,7 +509,6 @@ Page({
     })
   },
   btnTextFour: function(e) {
-    var num = 0
     var str = e.currentTarget.dataset.name
     //获取第一个选择答案
     var is = this.data.dataText;
@@ -444,19 +524,19 @@ Page({
     if (is == "牙齿颜色变黑") {
 
       if (str == "是") {
-       
+
         this.setData({
 
           //设置结论并且显示
-          //setverdict:true
+          setverdict: false,
           verdict: '感谢您的耐心配合，您很可能患有牙龈炎。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
         })
       } else {
-        
+
         this.setData({
 
           //设置结论并且显示
-          //setverdict:true
+          setverdict: false,
           verdict: '感谢您的耐心配合，您很可能患有内源性染色或牙体缺损。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
         })
       }
@@ -474,7 +554,7 @@ Page({
             five: vakss,
 
             //设置结论并且显示
-            //setverdict:true
+            setverdict: false,
             verdict: '感谢您的耐心配合，您很可能患有龋齿(虫牙)。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
           })
         } else {
@@ -582,7 +662,11 @@ Page({
     var vaks = !this.data.fiveSet;
     var isvak = this.data.dataTextThree;
 
-    var yes = this.data.dataTextTwo;
+    //获取第二个选择答案
+    var yes = this.data.dataTextTwo
+    //获取第三个选择答案
+    var thats = this.data.dataTextThree
+    //判断
     if (yes != "吃东西时才疼" && yes != "不,只是偶尔轻微出血") {
       //判断(是的,经常出血)中选项
       if (isvak != "会") {
@@ -592,6 +676,28 @@ Page({
           //显示隐藏下面问题与选项
           sexis: vakis,
           sex: vakss,
+        })
+      }
+
+    } else {
+      //结论( 牙髓炎 || 牙龈炎或牙周炎 )
+      var vakv = !this.data.setverdict;
+      this.setData({
+        //设置结论并且显示
+        setverdict: vakv,
+
+      })
+    }
+
+    if (yes == "是的,经常出血") {
+
+      if (thats == "会") {
+        //结论( 牙龈炎或牙周炎 )
+        var vakv = !this.data.setverdict;
+        this.setData({
+          //设置结论并且显示
+          setverdict: vakv,
+
         })
       }
 
@@ -625,7 +731,7 @@ Page({
         sexis: vakis,
         sex: vakss,
         //设置结论并且显示
-        //setverdict:true
+        setverdict: false,
         verdict: '感谢您的耐心配合，您很可能患有牙髓炎。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
       })
 
@@ -652,7 +758,7 @@ Page({
         sexis: vakis,
         sex: vakss,
         //设置结论并且显示
-        //setverdict:true
+        setverdict: false,
         verdict: '感谢您的耐心配合，您很可能患有牙龈炎或牙周炎。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
       })
 
@@ -669,7 +775,7 @@ Page({
           sexis: vakis,
           sex: vakss,
           //设置结论并且显示
-          //setverdict:true
+          setverdict: false,
           verdict: '感谢您的耐心配合，您很可能患有牙龈炎或牙周炎。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
         })
       } else {
@@ -706,6 +812,14 @@ Page({
         sevenis: vakis,
         seven: vakss,
       })
+    } else {
+      //结论( 牙髓炎 )
+      var vakv = !this.data.setverdict;
+      this.setData({
+        //设置结论并且显示
+        setverdict: vakv,
+
+      })
     }
 
     this.setData({
@@ -734,7 +848,7 @@ Page({
         sevenis: vakis,
         seven: vakss,
         //设置结论并且显示
-        //setverdict:true
+        setverdict: false,
         verdict: '感谢您的耐心配合，您很可能患有牙髓炎。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
       })
 
@@ -772,9 +886,11 @@ Page({
   btnClickSeven: function() {
     var vak = !this.data.seven;
     var vaks = !this.data.sevenSet;
+    var vakss = !this.data.setverdict;
     this.setData({
       seven: vak,
       sevenSet: vaks,
+      setverdict: vakss,
     })
   },
   btnTextSeven: function(e) {
@@ -791,7 +907,7 @@ Page({
       this.setData({
 
         //设置结论并且显示
-        //setverdict:true
+        setverdict: false,
         verdict: '感谢您的耐心配合，您很可能患有牙周牙髓联合病变。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
       })
 
@@ -800,7 +916,7 @@ Page({
       this.setData({
 
         //设置结论并且显示
-        //setverdict:true
+        setverdict: false,
         verdict: '感谢您的耐心配合，您很可能患有根尖炎。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
       })
     } else if (yes == "有") {
@@ -808,7 +924,7 @@ Page({
       this.setData({
 
         //设置结论并且显示
-        //setverdict:true
+        setverdict: false,
         verdict: '感谢您的耐心配合，您很可能患有牙周炎。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
       })
     } else {
@@ -816,7 +932,7 @@ Page({
       this.setData({
 
         //设置结论并且显示
-        //setverdict:true
+        setverdict: false,
         verdict: '感谢您的耐心配合，您很可能患有牙龈炎。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。'
       })
     }
@@ -825,7 +941,127 @@ Page({
     console.log(e.currentTarget.dataset.name)
   },
 
+  //特问一 (口腔有异味)
+  btnClickSpecial1: function() {
+    var vak = !this.data.specialOne;
+    var vaks = !this.data.specialOneSet;
 
+    var that = this.data.dataTextSpecial1;
+    if (that == "不，偶尔有异味") {
+      var vakis = !this.data.qingKu;
+      var vakss = !this.data.two;
+      this.setData({
+        //显示隐藏下面问题与选项
+        qingKu: vakis,
+        two: vakss,
+      })
+    }else {
+
+      //显示特问二
+      var vakis = !this.data.specialTwoIs;
+      var vakss = !this.data.specialTwo;
+
+      this.setData({
+
+        specialTwoIs: vakis,
+        specialTwo: vakss,
+      })
+
+    }
+
+    this.setData({
+      specialOne: vak,
+      specialOneSet: vaks,
+    })
+
+  },
+  btnTextSpecial1: function(e) {
+
+    this.setData({
+      dataTextSpecial1: e.currentTarget.dataset.name
+    })
+
+    var that = this.data.dataTextSpecial1;
+    if (that == "不，偶尔有异味") {
+      this.setData({
+
+        mottoTwo: "刷牙会经常出血吗？",
+        arr1: [{
+          id: 1,
+          name: '不,只是偶尔轻微出血'
+        }, {
+          id: 2,
+          name: '是的,经常出血'
+        }]
+
+      })
+    } else {
+     
+
+      this.setData({
+
+        mottoSpecialTwo: '能否排除肠胃问题等其他身体原因?',
+        arrSpecial2: [{
+          id: 1,
+          name: '能'
+        }, {
+          id: 2,
+          name: '不确定'
+        }]
+      })
+    }
+
+    this.btnClickSpecial1();
+    console.log(e.currentTarget.dataset.name)
+  },
+
+
+  //特问二 (口腔有异味)
+  btnClickSpecial2: function() {
+    var vak = !this.data.specialTwo;
+    var vaks = !this.data.specialTwoSet;
+
+    var that = this.data.dataTextspecial2;
+    if (that == "能") {
+      var vakis = !this.data.qingKu;
+      var vakss = !this.data.two;
+      this.setData({
+        //显示隐藏下面问题与选项
+        qingKu: vakis,
+        two: vakss,
+      })
+    }
+
+    this.setData({
+      specialTwo: vak,
+      specialTwoSet: vaks,
+    })
+  },
+  btnTextSpecial2: function(e) {
+
+    this.setData({
+      dataTextspecial2: e.currentTarget.dataset.name
+    })
+
+    var that = this.data.dataTextspecial2;
+    if (that == "能") {
+      
+      this.setData({
+
+        mottoTwo: "刷牙会经常出血吗？",
+        arr1: [{
+          id: 1,
+          name: '不,只是偶尔轻微出血'
+        }, {
+          id: 2,
+          name: '是的,经常出血'
+        }]
+
+      })
+    }
+    this.btnClickSpecial2();
+    console.log(e.currentTarget.dataset.name)
+  },
 
   onLoad: function() {
 

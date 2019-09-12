@@ -13,12 +13,13 @@
 		"coverView": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.1",
-	"appid": "touristappid",
-	"projectname": "weChat001",
+	"libVersion": "2.8.2",
+	"appid": "wxcf76d745d617eec9",
+	"projectname": "weChatCe",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
+	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
