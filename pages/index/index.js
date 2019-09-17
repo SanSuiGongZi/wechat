@@ -42,6 +42,11 @@ Page({
         }
       })
     }
+
+    wx.navigateTo({
+      url: '../chat/chat'
+    })
+
   },
   getUserInfo: function(e) {
     console.log(e)

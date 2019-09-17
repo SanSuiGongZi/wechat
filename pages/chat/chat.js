@@ -4,18 +4,23 @@ const app = getApp()
 
 Page({
   data: {
+
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+
     //问题
     mottoOne: '你感觉牙齿存在什么问题或者有哪些不适?',
-    mottoTwo: '是怎么样的牙疼呢?',
-    mottoThree: '吃什么东西会感到牙疼呢?',
-    mottofour: '停止食用是否会得?',
-    mottofive: '持续时间和疼痛程度如何?',
-    mottosex: '咬牙时是否会出现或加重疼痛?',
-    mottoseven: '是否出现牙齿松动?',
-    mottoSpecialOne: '经常会有异味吗?',
-    mottoSpecialTwo: '能否排除肠胃问题等其他身体原因?',
-    //结论
-    verdict: '感谢您的耐心配合，您很可能患有龋病(虫牙)。为进一步确诊,推荐您根据提示，使用识图自诊进一步确定病症，并在推荐阅读中了解相关内容。',
+    mottoTwo: '',
+    mottoThree: '',
+    mottofour: '',
+    mottofive: '',
+    mottosex: '',
+    mottoseven: '',
+    mottoSpecialOne: '',
+    mottoSpecialTwo: '',
+    verdict: '',
+
     //状态
     //第一问状态
     qing: true,
@@ -30,8 +35,6 @@ Page({
     fouris: true,
     four: false,
     fourSet: true,
-    //控制第五问状态
-    setFive: true,
     //第五问状态
     fiveis: true,
     five: false,
@@ -52,8 +55,22 @@ Page({
     specialTwoIs: true,
     specialTwo: false,
     specialTwoSet: true,
+    //控制特殊状态(口腔有异味)
+    setSpecialOne: true,
+    setSpecialTwo: true,
     //结论状态
     setverdict: false,
+
+    //回退图标状态
+    backspacingOne: true,
+    backspacingTwo: false,
+    backspacingThree: false,
+    backspacingFour: false,
+    backspacingFive: false,
+    backspacingSex: false,
+    backspacingOnes: false,
+    backspacingTwos: false,
+
     //文本
     // 一选答案
     dataText: '',
@@ -70,9 +87,11 @@ Page({
     //七选答案
     dataTextseven: '',
     //(口腔有异味)答案一
-    dataTextspecial1: '',
+    dataTextSpecial1: '',
     //(口腔有异味)答案二
-    dataTextspecial2: '能',
+    dataTextspecial2: '',
+
+
     //选项
     arr: [{
       id: 1,
@@ -85,7 +104,8 @@ Page({
       name: '口腔有异味'
     }, {
       id: 4,
-      name: '牙齿颜色变黑'
+      name: '牙齿颜色变黑',
+      wh:'1'
     }],
 
     arr1: [{
@@ -93,7 +113,8 @@ Page({
       name: '吃东西时才疼'
     }, {
       id: 2,
-      name: '自发性疼痛'
+        name: '自发性疼痛',
+        wh: '1'
     }],
 
     arr2: [{
@@ -187,6 +208,8 @@ Page({
   btnTextFn: function(e) {
 
     var str = e.currentTarget.dataset.name
+    var vakss = this.data.setSpecialOne;
+
     var that = this
 
     this.setData({
@@ -226,7 +249,11 @@ Page({
         }]
       })
     } else {
+      //设置特殊图标显示
       that.setData({
+
+        setSpecialOne: vakss,
+
         mottoSpecialOne: '经常会有异味吗?',
         arrSpecial1: [{
           id: 1,
@@ -246,6 +273,30 @@ Page({
     var vaks = !this.data.two;
     var vak = !this.data.twoSet;
     var vakss = !this.data.three;
+
+
+    var that = this.data.dataText
+    var thas = this.data.dataTextSpecial1
+
+    if (that == "口腔有异味") {
+
+      if (thas == "不，偶尔有异味") {
+        var vaksss = !this.data.setSpecialTwo
+        this.setData({
+          setSpecialTwo: vaksss,
+        })
+      }
+
+    } else {
+
+      var vaksss = !this.data.two
+      this.setData({
+        setSpecialOne: vaksss,
+      })
+
+    }
+
+
     this.setData({
       two: vaks,
       twoSet: vak,
@@ -945,6 +996,8 @@ Page({
   btnClickSpecial1: function() {
     var vak = !this.data.specialOne;
     var vaks = !this.data.specialOneSet;
+    var vaksss = !this.data.setSpecialOne;
+
 
     var that = this.data.dataTextSpecial1;
     if (that == "不，偶尔有异味") {
@@ -955,7 +1008,7 @@ Page({
         qingKu: vakis,
         two: vakss,
       })
-    }else {
+    } else {
 
       //显示特问二
       var vakis = !this.data.specialTwoIs;
@@ -972,6 +1025,7 @@ Page({
     this.setData({
       specialOne: vak,
       specialOneSet: vaks,
+      setSpecialOne: vaksss,
     })
 
   },
@@ -996,7 +1050,7 @@ Page({
 
       })
     } else {
-     
+
 
       this.setData({
 
@@ -1020,6 +1074,7 @@ Page({
   btnClickSpecial2: function() {
     var vak = !this.data.specialTwo;
     var vaks = !this.data.specialTwoSet;
+    var vaksss = !this.data.setSpecialTwo;
 
     var that = this.data.dataTextspecial2;
     if (that == "能") {
@@ -1035,6 +1090,7 @@ Page({
     this.setData({
       specialTwo: vak,
       specialTwoSet: vaks,
+      setSpecialTwo: vaksss,
     })
   },
   btnTextSpecial2: function(e) {
@@ -1045,7 +1101,7 @@ Page({
 
     var that = this.data.dataTextspecial2;
     if (that == "能") {
-      
+
       this.setData({
 
         mottoTwo: "刷牙会经常出血吗？",
@@ -1064,6 +1120,33 @@ Page({
   },
 
   onLoad: function() {
+
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
 
   },
 
